@@ -1,0 +1,108 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Thinka api documentation",
+        "version": "0.1.1",
+        "title": "Thinka API",
+        "termsOfService": "https://thinka.eu/en/thinka-for-knx.html",
+        "contact": {
+            "name": "apiteam@thinka.eu"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3024",
+    "basePath": "/v1",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/datapoint/match": {
+            "x-swagger-router-controller": "controller.datapoint",
+            "post": {
+                "tags": [
+                    "datapoint"
+                ],
+                "summary": "Data point group address match",
+                "operationId": "matchDataPoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "matchValue",
+                        "description": "match Value",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/dataPointGroupAddress"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bindings List",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/apiError"
+                        }
+                    }
+                },
+                "security": []
+            }
+        }
+        
+    },
+    "definitions": {
+            "dataPointGroupAddress": {
+                "type": "object",
+                "properties": {
+                    "groupAddress": {
+                        "type": "string"
+                    },
+                    "dptType": {
+                        "type": "string"
+                    }
+                }
+            },
+            "apiError": {
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "description": "UNHANDLED_ERROR = 20, UNAUTHORIZED_INSTANT_PERMISSION_REQUEST = 21, UNAUTHORIZED_API_ACCESS = 22",
+                        "enum": [
+                            20,
+                            21,
+                            22,
+                            23
+                        ]
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+}
