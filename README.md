@@ -6,4 +6,4 @@ Here is what you will make for usage :
 2. Go to dist folder just created and run  `node index.js --knxIp "<knx_ip_router_address>" --knxPort <knx_ip_router_port>`
 3. That's all
  
-Application will connect and start collecting data from knx system. 
+Application will connect and start collecting data from knx system.
